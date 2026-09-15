@@ -11,7 +11,7 @@ const href=p=>`${BASE}/${p?p+'/':''}?lang=${lang}`;
 const link=(p,label,cl='')=>`<a class="${cl}" href="${href(p)}">${label}</a>`;
 const photo=(name,alt,cls='',lazy=true)=>`<img src="${BASE}/assets/${esc(name)}" alt="${esc(alt)}" class="${cls}" ${lazy?'loading="lazy"':''} decoding="async">`;
 const routes=['','experience','projects','work','skills','education'];
-let page=location.pathname.split('/').filter(Boolean)[0]||'';
+let page=location.pathname.replace(BASE,'').split('/').filter(Boolean)[0]||'';
 function heading(k,title,desc){return `<div class="page-heading"><div class="eyebrow">${k}</div><h1>${title}</h1>${desc?`<p>${desc}</p>`:''}</div>`}
 
 function caseVisual(c,large=false){if(!c.visual)return photo(c.cover,tx(c.name));return `<div class="brief-cover ${large?'large':''}"><div class="eyebrow">VOICE AGENT · CREATIVE PLANNING</div><strong>${L('一句指令，<br>让任务开始推进。','One instruction.<br>A task in motion.')}</strong><div class="brief-flow"><span>${L('用户动机','MOTIVATION')}</span><i>→</i><span>${L('产品执行','ACTION')}</span><i>→</i><span>${L('创意表达','CREATIVE')}</span></div></div>`}
